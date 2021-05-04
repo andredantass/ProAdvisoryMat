@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TableData } from '../md/md-table/md-table.component';
+import { DataService } from '../services/data.service';
 import { LegendItem, ChartType } from '../md/md-chart/md-chart.component';
 
 import * as Chartist from 'chartist';
@@ -10,9 +11,11 @@ declare const $: any;
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
+export class DashboardComponent implements OnInit {
   // constructor(private navbarTitleService: NavbarTitleService, private notificationService: NotificationService) { }
   public tableData: TableData;
+  public leadCount: any;
+
   startAnimationForLineChart(chart: any) {
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -68,8 +71,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
       seq2 = 0;
   }
+
   // constructor(private navbarTitleService: NavbarTitleService) { }
   public ngOnInit() {
+
       this.tableData = {
           headerRow: ['ID', 'Name', 'Salary', 'Country', 'City'],
           dataRows: [
@@ -149,7 +154,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           axisX: {
             labelInterpolationFnc: function (value) {
               return value[0];
-            }
+            }   
           }
         }]
       ];
@@ -183,6 +188,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
          }
       });
    }
+   constructor(public dataService: DataService) {
+    this.lead();
+  }
+   lead(){
+    this.dataService.leadCount().subscribe(
+      response => {
+        this.leadCount = response.data.leads;
+      }
+    );
+
+  }
    ngAfterViewInit() {
        const breakCards = true;
        if (breakCards === true) {
