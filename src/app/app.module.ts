@@ -50,6 +50,7 @@ import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 
 import { AppRoutes } from './app.routing';
 
+
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -82,7 +83,8 @@ import { AppRoutes } from './app.routing';
     MatToolbarModule,
     MatTooltipModule,
     MatNativeDateModule
-  ]
+  ],
+  declarations: []
 })
 export class MaterialModule {}
 

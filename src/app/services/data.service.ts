@@ -19,6 +19,16 @@ export class DataService {
       map(response => response as [])
     );
   }
+  qualifiedCount():Observable<any> {
+    return this.http.get(`${this.api}/Form/QualifiedCount`).pipe(
+      map(response => response as [])
+    );
+  }
+  visitsCount():Observable<any> {
+    return this.http.get(`${this.api}/Form/VisitsCount`).pipe(
+      map(response => response as [])
+    );
+  }
   /* getVaccineKPIByGender():Observable<any>{
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',

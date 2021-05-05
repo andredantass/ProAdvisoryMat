@@ -15,6 +15,9 @@ export class DashboardComponent implements OnInit {
   // constructor(private navbarTitleService: NavbarTitleService, private notificationService: NotificationService) { }
   public tableData: TableData;
   public leadCount: any;
+  public qualifiedCount: any;
+  public disqualifiedCount: any;
+  public visitsCount: any;
 
   startAnimationForLineChart(chart: any) {
       let seq: any, delays: any, durations: any;
@@ -190,6 +193,8 @@ export class DashboardComponent implements OnInit {
    }
    constructor(public dataService: DataService) {
     this.lead();
+    this.qualifiedLead();
+    this.visits();
   }
    lead(){
     this.dataService.leadCount().subscribe(
@@ -197,7 +202,21 @@ export class DashboardComponent implements OnInit {
         this.leadCount = response.data.leads;
       }
     );
-
+  }
+  qualifiedLead(){
+    this.dataService.qualifiedCount().subscribe(
+      response => {
+        this.qualifiedCount = response.data.qualified;
+        this.disqualifiedCount = response.data.disqualified;
+      }
+    )
+  }
+  visits(){
+    this.dataService.visitsCount().subscribe(
+      response => {
+        this.visitsCount = response.data.visits;
+      }
+    )
   }
    ngAfterViewInit() {
        const breakCards = true;

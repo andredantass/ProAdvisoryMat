@@ -27,6 +27,16 @@ export const ROUTES: RouteInfo[] = [{
         type: 'link',
         icontype: 'dashboard'
     },{
+        path: '/lead',
+        title: 'Leads',
+        type: 'sub',
+        icontype: 'apps',
+        collapse: 'lead',
+        children: [
+            {path: 'listlead', title: 'Lista de Leads', ab:'LL'},
+            {path: 'newlead', title: 'Novo Lead', ab:'NL'}
+        ]
+    },{
         path: '/components',
         title: 'Components',
         type: 'sub',
